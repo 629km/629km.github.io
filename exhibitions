@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exhibitions — Kwangmin Cho</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+
+<body>
+<div class="nav">
+  <div class="container nav-inner">
+    <div class="brand"><a href="/">Kwangmin Cho</a></div>
+    <div>
+      <a href="/cv.html">CV</a>
+      <a href="/publications.html">Publications</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/exhibitions.html">Exhibitions</a>
+    </div>
+  </div>
+</div>
+
+<main class="container" style="padding:40px 0">
+  <h1 class="h1">Exhibitions</h1>
+  <p class="sub">Installations, showcases, and public exhibitions.</p>
+  <div class="spacer-40"></div>
+
+  <section>
+    <h2>2024</h2>
+    <ul>
+      <li>Gwangju Design Biennale 2024 — <strong>Lumino Play Dome</strong></li>
+    </ul>
+
+    <h2>2023</h2>
+    <ul>
+      <li>Ulsan Design Exhibition — <strong>Mobile Clinic Module</strong></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="footer">
+  © <span id="y"></span> Kwangmin Cho · <a href="mailto:sky2021003@gmail.com">Contact</a>
+</footer>
+<script>document.getElementById('y').textContent = new Date().getFullYear()</script>
+</body>
+</html>
