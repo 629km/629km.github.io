@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects — Kwangmin Cho</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+
+<body>
+<div class="nav">
+  <div class="container nav-inner">
+    <div class="brand"><a href="/">Kwangmin Cho</a></div>
+    <div>
+      <a href="/cv.html">CV</a>
+      <a href="/publications.html">Publications</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/exhibitions.html">Exhibitions</a>
+    </div>
+  </div>
+</div>
+
+<main class="container" style="padding:40px 0">
+  <h1 class="h1">Projects</h1>
+  <p class="sub">Design research & interaction prototyping projects.</p>
+  <div class="spacer-40"></div>
+
+  <!-- 여기 아래에 카드 목록이 들어감 -->
+  <section id="project-list">
+    <ul>
+      <li><a href="/projects/mcm.html">Mobile Clinic Module (MCM)</a> — Rapid negative-pressure ward</li>
+      <li><a href="/projects/lumino-dome.html">Lumino Play Dome</a> — Pediatric play installation</li>
+      <li><a href="/projects/hospital-ui.html">AI-driven Hospital UI</a> — Adaptive triage interface</li>
+      <li><a href="/projects/smart-lighting-edu.html">Smart Lighting Education</a> — Physical computing curriculum</li>
+    </ul>
+  </section>
+</main>
+
+<footer class="footer">
+  © <span id="y"></span> Kwangmin Cho · <a href="mailto:sky2021003@gmail.com">Contact</a>
+</footer>
+<script>document.getElementById('y').textContent = new Date().getFullYear()</script>
+</body>
+</html>
