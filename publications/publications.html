@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Publications — Kwangmin Cho</title>
+
+    <meta
+      name="description"
+      content="Design research, AI-supported design, healthcare UX, human-AI collaboration — Publications by Kwangmin Cho"
+    />
+    <link rel="icon" href="/assets/favicon.png" type="image/png" />
+
+    <style>
+      :root {
+        --bg: #ffffff;
+        --ink: #141519;
+        --ink2: #3c3f46;
+        --muted: #6b7280;
+        --line: #e5e7eb;
+        --brand: #6b4bff;
+        --chip: #f4f5f7;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto,
+          "Noto Sans KR", sans-serif;
+      }
+      a {
+        color: var(--ink);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      a:hover {
+        color: var(--brand);
+      }
+
+      /* === Layout === */
+      .wrap {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        min-height: 100vh;
+      }
+      @media (max-width: 960px) {
+        .wrap {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          position: sticky;
+          top: 0;
+        }
+      }
+
+      .sidebar {
+        border-right: 1px solid var(--line);
+        padding: 28px 20px;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+      }
+      .side-inner {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .brand {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+      }
+      .avatar {
+        width: 52px;
+        height: 52px;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+      }
+      .avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .name {
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 1.2;
+      }
+      .role {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      nav.primary {
+        margin: 26px 0;
+      }
+      nav.primary a {
+        display: block;
+        padding: 8px 10px;
+        border-radius: 10px;
+        color: var(--ink2);
+      }
+      nav.primary a.active,
+      nav.primary a:hover {
+        background: var(--chip);
+        color: var(--ink);
+      }
+
+      .contact {
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .contact a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--ink2);
+      }
+      .contact svg {
+        width: 18px;
+        height: 18px;
+        fill: currentColor;
+      }
+
+      main {
+        padding: 40px 5vw;
+      }
+      section {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 14px 0;
+      }
+      h1 {
+        font-size: 42px;
+        margin: 0 0 10px;
+      }
+      h2 {
+        font-size: 20px;
+        margin: 30px 0 10px;
+      }
+
+      /* === Publications list === */
+      .pub-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .pub-list li {
+        padding: 12px 0;
+        border-top: 1px solid var(--line);
+      }
+      .venue {
+        color: var(--muted);
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        margin-top: 60px;
+        padding: 16px 0;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="side-inner">
+          <div class="brand">
+            <figure class="avatar"><img src="/assets/Profile.png" /></figure>
+            <div>
+              <div class="name">Kwangmin Cho</div>
+              <div class="role">Design Research · Industrial Design</div>
+            </div>
+          </div>
+
+          <nav class="primary">
+            <a href="/">Home</a>
+            <a href="/publications.html" class="active">Publications</a>
+            <a href="/projects.html">Projects</a>
+            <a href="/exhibitions.html">Exhibitions</a>
+            <a href="/#news">News</a>
+          </nav>
+
+          <div class="contact">
+            <a href="mailto:sky2021003@gmail.com">Email</a>
+            <a href="https://www.linkedin.com/in/km-cho/" target="_blank"
+              >LinkedIn</a
+            >
+            <a
+              href="https://scholar.google.com/citations?user=OpjThPAAAAAJ&hl=ko"
+              target="_blank"
+              >Google Scholar</a
+            >
+            <a href="/Kwangmin_CV.pdf" target="_blank">CV (PDF)</a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main>
+        <section>
+          <h1>Publications</h1>
+          <p class="muted">
+            Peer-reviewed publications in design research, AI + healthcare, HCI,
+            and interaction design.
+          </p>
+
+          <!-- Example list -->
+          <h2>2025</h2>
+          <ul class="pub-list">
+            <li>
+              A Study onEstablishing Design Guidelines Considering Privacy and
+              User Experience in Public Spaces, Society of Design Convergence.
+              <br /><strong>Cho, K.</strong> , Yoon, J. & Kim, C.*.(2025)
+              <br />Design Convergence Study / KCI
+              <br />
+              <strong
+                >*2025 Minister's Award for Research in the Public Design
+                Awards</strong
+              >
+            </li>
+          </ul>
+
+          <h2>2023</h2>
+          <ul class="pub-list">
+            <li>
+              Assessing a Mobile and Modular Negative Pressure Ward(Mobile
+              Clinic Module) for COCID-19 outpatient Treatment
+              <br /><strong>Cho, K.</strong>, Bae, C., & Nam, T. <br />IASDR
+              2023
+            </li>
+          </ul>
+          <h2>2022</h2>
+          <ul class="pub-list">
+            <li>
+              IdeaSquares: Utilizing Generative Text as a Source of Design
+              Inspiration, Design Research Society
+              <br />Yoon, K., <strong>Cho, K.</strong>, Jeong, Y., & Nam, T.
+              <br />DRS2022
+            </li>
+          </ul>
+          <h2>2021</h2>
+          <ul class="pub-list">
+            <li>
+              Understanding stakeholders’ needs for an Emergency Mobile Hospital
+              at an infectious disease situation.
+              <br />
+              <strong>Cho, K.</strong>, Lee, S., Park, W., Lee, M., Kim, W.,
+              Lee, S., & Nam, T. <br />IASDR21 / SCI index
+            </li>
+          </ul>
+          <h2>2019</h2>
+          <ul class="pub-list">
+            <li>
+              Design considerations for play experience in children’s hospital:
+              from perspectives of child inpatients, parents, nurses and
+              hospital service experts.
+              <br /><strong>Cho, K.</strong>, Kim, C., Ma, S., & Yoon, J.
+              <br />IASDR2019
+            </li>
+          </ul>
+          <h2>2018</h2>
+          <ul class="pub-list">
+            <li>
+              Exploring the interaction between lighting variables and
+              information transfer asa new function of lighting.
+              <br />Jun, D., Kim, C., & <strong>Cho, K.</strong> <br />DRS2018
+            </li>
+          </ul>
+          <h2>2017</h2>
+          <ul class="pub-list">
+            <li>
+              Design for privacy in public space. In DS 87-5 Proceedings of the
+              21st International Conference on Engineering Design
+              <br /><strong>Cho, K.</strong> & Kim, C. <br />
+              ICED 2017 / SCOPUS index
+              <p>
+                Understanding Everyday Design.
+                <br />Kim, S., <strong>Cho, K.</strong> & Kim, C. (2017).
+                <br />IASDR2017
+              </p>
+            </li>
+          </ul>
+          <h2>2015</h2>
+          <ul class="pub-list">
+            <li>
+              The influence of generation in the usage of smart phone as a means
+              of distributed cognition; an exploratory study of Baby boomer and
+              Generation Y.
+              <br /><strong>Cho, K.</strong> & Kim, C. <br />IASDR2015
+
+              <p>
+                Developing a framework of new mixed method, social networking
+                services group diary and its application in practice.
+                <br />Bae, J., <strong>Cho, K.</strong> & Kim, C. <br />
+                ICED 2015 / SCOPUS index
+              </p>
+              <p>
+                Barriers to hinder collaboration within product development
+                teams from designers’ perspective and the development of a
+                method to facilitate the collaboration.
+                <br />Kim, Y., Kim, C., <strong>Cho, K.</strong> & Kim, K.
+                <br />ICED 2015 / SCOPUS index
+              </p>
+            </li>
+          </ul>
+
+          <footer>© <span id="year"></span> Kwangmin Cho</footer>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

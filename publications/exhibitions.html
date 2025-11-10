@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Exhibitions — Kwangmin Cho</title>
+    <meta
+      name="description"
+      content="Selected exhibitions and installations."
+    />
+    <link rel="icon" href="/assets/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="/assets/page.css" />
+    <style>
+      /* === 페이지 전용 스타일 (세로 1열 카드) === */
+      .tools {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin: 14px 0 22px;
+      }
+      .tools input {
+        flex: 1;
+        min-width: 240px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 10px 12px;
+      }
+      .tool-tags {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .chip {
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 13px;
+        cursor: pointer;
+      }
+      .chip.active {
+        background: var(--chip);
+      }
+
+      .vlist {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .vcard {
+        display: grid;
+        grid-template-columns: 1fr;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        overflow: hidden;
+        background: #fff;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+      .vcard:hover {
+        transform: translateY(-2px);
+      }
+      .vcard .thumb {
+        width: 100%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        display: block;
+      }
+      .vcard .body {
+        padding: 16px 16px 14px;
+      }
+      .vcard .title {
+        font-size: 22px;
+        font-weight: 700;
+        margin: 0 0 6px;
+      }
+      .vcard .meta {
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+      .vcard .desc {
+        margin: 0;
+        color: var(--ink2);
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 12px;
+      }
+      .tag {
+        font-size: 12px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+      }
+      .more {
+        display: inline-block;
+        margin-top: 12px;
+        font-size: 14px;
+        color: var(--brand);
+      }
+      .load {
+        margin: 22px auto 0;
+        display: block;
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 10px;
+        padding: 10px 14px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      .load:hover {
+        background: var(--chip);
+      }
+      @media (min-width: 900px) {
+        /* 큰 화면에서는 썸네일 위, 텍스트 아래 그대로 — 요청이 '세로 한 줄 카드'라 1열 유지 */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <!-- Sidebar (같은 패턴) -->
+      <aside class="sidebar">
+        <div class="side-inner">
+          <div class="brand">
+            <figure class="avatar">
+              <img src="/assets/Profile.png" alt="" />
+            </figure>
+            <div>
+              <div class="name">Kwangmin Cho</div>
+              <div class="role">Design Research · Industrial Design</div>
+            </div>
+          </div>
+          <nav class="primary">
+            <a href="/">Home</a>
+            <a href="/publications.html">Publications</a>
+            <a href="/projects.html">Projects</a>
+            <a href="/exhibitions.html" class="active">Exhibitions</a>
+            <a href="/#news">News</a>
+          </nav>
+          <div class="contact">
+            <a href="mailto:sky2021003@gmail.com">Email</a>
+            <a
+              href="https://www.linkedin.com/in/km-cho/"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+            <a
+              href="https://scholar.google.com/citations?user=OpjThPAAAAAJ&hl=ko"
+              target="_blank"
+              rel="noopener"
+              >Google Scholar</a
+            >
+            <a href="/Kwangmin_CV.pdf" target="_blank" rel="noopener"
+              >CV (PDF)</a
+            >
+          </div>
+        </div>
+      </aside>
+
+      <main>
+        <section>
+          <h1>Exhibitions</h1>
+
+          <!-- 검색 + 태그 필터 -->
+          <div class="tools">
+            <input
+              id="search"
+              type="search"
+              placeholder="Search by title, venue, city, or tag…"
+            />
+            <div class="tool-tags" id="filter-tags"></div>
+          </div>
+
+          <!-- 1열 카드 리스트 -->
+          <div class="vlist" id="vlist"></div>
+
+          <button
+            class="load"
+            id="loadMore"
+            aria-label="Load more exhibitions"
+            style="margin-top: 20px"
+          >
+            Load more
+          </button>
+
+          <footer style="margin-top: 30px">
+            © <span id="year"></span> Kwangmin Cho
+          </footer>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      // ====== 데이터 (필요에 맞게 수정/추가) ======
+      const EXHIBITIONS = [
+        {
+          slug: "pop",
+          title: "Mobile pop-up hospital for Special disaster",
+          venue: "Gwangju Design Biennale 2025",
+          city: "Gwangju, South Korea",
+          year: "2025",
+          desc: "Mobile pop-up hospital module for special disaster response",
+          tags: [
+            "Social problem",
+            "Healthcare",
+            "Medical device",
+            "Product",
+            "UX",
+            "AI",
+          ],
+          thumb: "/assets/exhibitions/pop.jpg",
+        },
+        {
+          slug: "luminodome",
+          title: "Lumino Dome",
+          venue: "Tangshan International Invitational Exhibition",
+          city: "North China University of Secienc and Technology, Qinhuagdao, China",
+          year: "2025",
+          desc: "Immersive play environment for child patients",
+          tags: ["Healthcare", "Medical device", "UX", "AI"],
+          thumb: "/assets/exhibitions/luminodome.jpg",
+        },
+        {
+          slug: "luminoplace",
+          title: "Lumino Place",
+          venue: "International Spring Invitational Exhibition",
+          city: "Design Gallery, Seoul, South Korea",
+          year: "2025",
+          desc: "Interactive play equipment for childhood cancer patient",
+          tags: ["Healthcare", "Medical device", "UX", "AI"],
+          thumb: "/assets/exhibitions/luminoplace.jpg",
+        },
+        {
+          slug: "volumesquareinterface",
+          title: "Volume square interface",
+          venue: "International Spring Invitational Exhibition",
+          city: "Design Gallery, Seoul, South Korea",
+          year: "2025",
+          desc: "Mobile hospital control system UI design",
+          tags: [
+            "Social problem",
+            "Healthcare",
+            "Medical device",
+            "UX",
+            "UI",
+            "AI",
+          ],
+          thumb: "/assets/exhibitions/volumesquareinterface.jpg",
+        },
+        {
+          slug: "futurereframed",
+          title: "Future Reframed",
+          venue: "Wooseok Gallary",
+          city: "Seoul National University, Seoul, South Korea",
+          year: "2025, 2-person show",
+          desc: "A new future to look forward to when the future singularity arrives",
+          tags: ["Future design", "Speculative design", "Future scenario"],
+          thumb: "/assets/exhibitions/futurereframed.jpg",
+        },
+        {
+          slug: "mcmg",
+          title: "Mobile Clinic Module",
+          venue: "Gwangju Design Biennale 2023",
+          city: "Gwangju, South Korea",
+          year: "2023",
+          desc: "Mobile Clinic Module system for pandemic response",
+          tags: [
+            "Social problem",
+            "Healthcare",
+            "Medical device",
+            "System design",
+            "Product",
+            "UX",
+          ],
+          thumb: "/assets/exhibitions/mcmg.jpg",
+        },
+        {
+          slug: "orcas",
+          title: "The Orcas Hanging Mobile",
+          venue: "International Spring Invitational Exhibition",
+          city: "Muak Rotary Hall, Seoul, South Korea",
+          year: "2024",
+          desc: "Series of hanging mobile for meditation",
+          tags: ["Object", "Product", "meditation"],
+          thumb: "/assets/exhibitions/orcas.jpg",
+        },
+        {
+          slug: "spaceoflight",
+          title: "Space of Light",
+          venue: "International Spring Invitational Exhibition",
+          city: "Muak Rotary Hall, Seoul, South Korea",
+          year: "2024",
+          desc: "A vertical future space where you can experience a sense of pleasure",
+          tags: ["Speculative design", "Space design", "Future design"],
+          thumb: "/assets/exhibitions/spaceoflight.jpg",
+        },
+
+        {
+          slug: "spaceofwater",
+          title: "Space of Water",
+          venue: "International Fall Invitational Exhibition",
+          city: "COEX Hall D, Seoul, South Korea",
+          year: "2023",
+          desc: "An exhibition of meditation spaces in the infinity of the future",
+          tags: ["Speculative design", "Space design", "Future design"],
+          thumb: "/assets/exhibitions/spaceofwater.jpg",
+        },
+        {
+          slug: "flyingwhale",
+          title: "Flying whale",
+          venue: "International Fall Invitational Exhibition",
+          city: "COEX Hall D, Seoul, South Korea",
+          year: "2023",
+          desc: "Series of hanging mobile for meditation",
+          tags: ["Object", "Product", "meditation"],
+          thumb: "/assets/exhibitions/flyingwhale.jpg",
+        },
+        {
+          slug: "toilet",
+          title: "MCM toilet",
+          venue: "International Spring Invitational Exhibition",
+          city: "Cheongpa Gallery, Seoul, South Korea",
+          year: "2022",
+          desc: "System for mobile hospital with no gradienttoilet",
+          tags: [
+            "Social problem",
+            "Healthcare",
+            "Medical device",
+            "Product",
+            "UX",
+          ],
+          thumb: "/assets/exhibitions/toilet.jpg",
+        },
+        {
+          slug: "air",
+          title: "Air king",
+          venue: "Gwangju Design Biennale 2017",
+          city: "Gwangju, South Korea",
+          year: "2017",
+          desc: "Future circulation robot",
+          tags: ["Home appliance", "Robot", "UX"],
+          thumb: "/assets/exhibitions/air.jpg",
+        },
+        // 필요하면 계속 추가
+      ];
+
+      // ====== 유틸 ======
+      const yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+      const vlist = document.getElementById("vlist");
+      const search = document.getElementById("search");
+      const loadMoreBtn = document.getElementById("loadMore");
+      const filterTags = document.getElementById("filter-tags");
+
+      let shown = 5; // 초기 노출 개수
+      let activeTag = null;
+
+      // 고유 태그 수집 → 필터 칩 생성
+      const ALL_TAGS = [...new Set(EXHIBITIONS.flatMap((e) => e.tags || []))];
+      ALL_TAGS.forEach((t) => {
+        const b = document.createElement("button");
+        b.className = "chip";
+        b.textContent = t;
+        b.onclick = () => {
+          activeTag = activeTag === t ? null : t;
+          [...filterTags.children].forEach((x) =>
+            x.classList.toggle("active", x.textContent === activeTag)
+          );
+          render();
+        };
+        filterTags.appendChild(b);
+      });
+
+      function render() {
+        const term = (search.value || "").toLowerCase();
+        let list = EXHIBITIONS.filter(
+          (e) =>
+            (!activeTag || (e.tags || []).includes(activeTag)) &&
+            ((e.title || "").toLowerCase().includes(term) ||
+              (e.venue || "").toLowerCase().includes(term) ||
+              (e.city || "").toLowerCase().includes(term) ||
+              (e.year || "").toLowerCase().includes(term) ||
+              (e.desc || "").toLowerCase().includes(term) ||
+              (e.tags || []).join(" ").toLowerCase().includes(term))
+        );
+
+        vlist.innerHTML = "";
+        list.slice(0, shown).forEach((e) => {
+          vlist.insertAdjacentHTML(
+            "beforeend",
+            `
+        <article class="vcard">
+          <a href="/exhibitions/${e.slug}.html" aria-label="Open exhibition: ${
+              e.title
+            }">
+            <img class="thumb" src="${e.thumb}" alt="${e.title} thumbnail">
+            <div class="body">
+              <h3 class="title">${e.title}</h3>
+              <div class="meta">${e.venue} · ${e.city} · ${e.year}</div>
+              <p class="desc">${e.desc || ""}</p>
+              <div class="tags">${(e.tags || [])
+                .map((t) => `<span class="tag">${t}</span>`)
+                .join("")}</div>
+              <span class="more">View details →</span>
+            </div>
+          </a>
+        </article>
+      `
+          );
+        });
+        loadMoreBtn.style.display = list.length > shown ? "block" : "none";
+      }
+
+      search?.addEventListener("input", () => {
+        shown = 5;
+        render();
+      });
+      loadMoreBtn?.addEventListener("click", () => {
+        shown += 5;
+        render();
+      });
+
+      render();
+    </script>
+  </body>
+</html>

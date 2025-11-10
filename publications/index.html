@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kwangmin Cho — Portfolio</title>
+    <meta
+      name="description"
+      content="Design researcher & industrial designer. Healthcare × AI × Interaction."
+    />
+    <link rel="icon" href="/assets/favicon.png" type="image/png" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --ink: #141519;
+        --ink2: #3c3f46;
+        --muted: #6b7280;
+        --line: #e5e7eb;
+        --brand: #6b4bff;
+        --chip: #f4f5f7;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto,
+          "Noto Sans KR", sans-serif;
+      }
+      a {
+        color: var(--ink);
+        text-decoration: none;
+      }
+      a:hover {
+        color: var(--brand);
+      }
+
+      /* Layout */
+      .wrap {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        min-height: 100vh;
+      }
+      @media (max-width: 960px) {
+        .wrap {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          position: sticky;
+          top: 0;
+        }
+      }
+
+      /* Sidebar */
+      .sidebar {
+        border-right: 1px solid var(--line);
+        padding: 28px 20px;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+      }
+      .brand {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+      }
+      .avatar {
+        width: 52px;
+        height: 52px;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+      }
+      .avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .name {
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 1.2;
+      }
+      .role {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      nav.primary {
+        margin: 26px 0;
+      }
+      nav.primary a {
+        display: block;
+        padding: 8px 10px;
+        border-radius: 10px;
+        color: var(--ink2);
+      }
+      nav.primary a.active,
+      nav.primary a:hover {
+        background: var(--chip);
+        color: var(--ink);
+      }
+      .contact {
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .contact a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--ink2);
+      }
+      .contact svg {
+        width: 18px;
+        height: 18px;
+        fill: currentColor;
+      }
+      .side-inner {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      /* Top bar for mobile */
+      .top {
+        display: none;
+        border-bottom: 1px solid var(--line);
+        padding: 14px 16px;
+      }
+      @media (max-width: 960px) {
+        .sidebar {
+          display: none;
+        }
+        .top {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+
+      /* Main */
+      main {
+        padding: 40px 5vw;
+      }
+      section {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 14px 0;
+      }
+      h1 {
+        font-size: 42px;
+        line-height: 1.2;
+        margin: 0 0 10px;
+      }
+      h2 {
+        font-size: 26px;
+        margin: 22px 0 6px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 12px;
+      }
+      .chip {
+        font-size: 13px;
+        padding: 6px 10px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: #fff;
+      }
+
+      /* Projects grid */
+      .projects-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 16px;
+        margin: 24px 0 8px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+      @media (max-width: 1024px) {
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 640px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        overflow: hidden;
+        background: #fff;
+        transition: transform 0.15s ease;
+      }
+      .card:hover {
+        transform: translateY(-2px);
+      }
+      .card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        display: block;
+      }
+      .card .body {
+        padding: 14px;
+      }
+      .card h3 {
+        margin: 0 0 6px;
+        font-size: 18px;
+      }
+      .meta {
+        margin: 8px 0 0;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      /* News list */
+      .news li {
+        border-top: 1px solid var(--line);
+        padding: 12px 0;
+      }
+      .news time {
+        color: var(--muted);
+        font-size: 13px;
+        margin-right: 8px;
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        margin-top: 40px;
+        padding: 20px 0;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Mobile top bar -->
+    <div class="top">
+      <strong>Kwangmin Cho</strong>
+      <a href="#menu">Menu</a>
+    </div>
+
+    <div class="wrap">
+      <!-- Sidebar (left) -->
+      <aside class="sidebar" aria-label="Sidebar navigation">
+        <div class="side-inner">
+          <div class="brand">
+            <figure class="avatar">
+              <img src="/assets/Profile.png" alt="Portrait of Kwangmin Cho" />
+            </figure>
+            <div>
+              <div class="name">Kwangmin Cho</div>
+              <div class="role">Design Research · Industrial Design</div>
+            </div>
+          </div>
+
+          <nav class="primary" aria-label="Primary">
+            <a href="#home" class="active">Home</a>
+            <a href="/publications.html">Publications</a>
+            <a href="/projects.html">Projects</a>
+            <a href="/exhibitions.html">Exhibitions</a>
+            <a href="#news">News</a>
+          </nav>
+
+          <div class="contact" aria-label="Contacts">
+            <a href="mailto:sky2021003@gmail.com"
+              ><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11A2.5 2.5 0 0 1 19.5 20h-15A2.5 2.5 0 0 1 2 17.5v-11Zm2.2-.5 7.8 5.3L19.8 6H4.2Zm15.3 2.2-6.9 4.7a1.5 1.5 0 0 1-1.6 0L4.1 8.2V17.5c0 .28.22.5.5.5h15c.28 0 .5-.22.5-.5V8.2Z"
+                /></svg
+              >sky2021003@gmail.com</a
+            >
+            <a
+              href="https://www.linkedin.com/in/km-cho/"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M4.98 3.5a2.5 2.5 0 1 1 .02 5 2.5 2.5 0 0 1-.02-5ZM3 8.75h4v11.5H3V8.75Zm6.5 0H13v1.74h.05c.49-.93 1.68-1.9 3.46-1.9 3.7 0 4.39 2.3 4.39 5.3v6.36h-4V14.9c0-1.2-.02-2.74-1.67-2.74-1.67 0-1.93 1.3-1.93 2.66v5.43h-4V8.75Z"
+                /></svg
+              >LinkedIn</a
+            >
+            <a
+              href="https://scholar.google.com/citations?user=OpjThPAAAAAJ&hl=ko"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 3 1.5 8.5 12 14l6.5-3.5v5.25a3.75 3.75 0 0 1-3 3.67v1.08c1.7.2 3.5.2 5.25 0v-1.08a3.75 3.75 0 0 1-3-3.67V9.9L22.5 8.5 12 3Z"
+                /></svg
+              >Google Scholar</a
+            >
+            <a href="/Kwangmin_CV.pdf"
+              ><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M7 2h7l5 5v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm7 1.5V8h4.5L14 3.5ZM8.5 11h7v1.5h-7V11Zm0 3h7v1.5h-7V14Zm0 3h7V18H8.5Z"
+                /></svg
+              >CV (PDF)</a
+            >
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main (right) -->
+      <main>
+        <!-- Home -->
+        <section id="home">
+          <h1>Hello, I’m Kwangmin.</h1>
+          <p class="muted">
+            I am an Research Assistant Professor of the deparment of Industrial
+            Design at the KAIST(Kaorea Advanced Institute of Science and
+            Technologh.
+            <br />I received Ph.D. in Creative Design Engineering from the Ulsan
+            National Institute of Science and Technology (UNIST). <br />My M.S.
+            and B.S. is Industrial Design at the same university. Ph.D.
+            Strategic design researcher exploring how
+            <strong>AI‑supported</strong> and
+            <strong>data‑enabled</strong> approaches can transform healthcare
+            systems & services.
+          </p>
+          <div class="chips">
+            <span class="chip">Healthcare systems & service</span>
+            <span class="chip">Human–AI collaboration</span>
+            <span class="chip">Responsible AI</span>
+            <span class="chip">Product design</span>
+            <span class="chip">Participatory design</span>
+            <span class="chip">Research through design</span>
+          </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects">
+          <div class="projects-head">
+            <h2>Selected Projects</h2>
+            <a href="/projects.html">All projects →</a>
+          </div>
+          <div class="grid">
+            <article class="card">
+              <a href="/projects/mcm.html"
+                ><img
+                  src="/assets/projects/mcm.jpg"
+                  alt="Negative-pressure ward prototype"
+              /></a>
+              <div class="body">
+                <h3>Mobile Clinic Module (MCM)</h3>
+                <p class="muted">
+                  Rapid-deploy negative-pressure ward for disaster response.
+                </p>
+                <p class="meta">Lead Designer · Setup time ↓ 37% (pilot)</p>
+              </div>
+            </article>
+            <article class="card">
+              <a href="/projects/mcmshutter.html"
+                ><img
+                  src="/assets/projects/mcmshutter.jpg"
+                  alt="MCM Shutter wastewater treatment module"
+              /></a>
+              <div class="body">
+                <h3>MCM Shutter</h3>
+                <p class="muted">
+                  Interactive play space to reduce stress and aid recovery.
+                </p>
+                <p class="meta">Creative Direction · Engagement ↑ 23%</p>
+              </div>
+            </article>
+            <article class="card">
+              <a href="/exhibitions/pop.html"
+                ><img
+                  src="/assets/exhibitions/pop.jpg"
+                  alt="Adaptive hospital UI screens"
+              /></a>
+              <div class="body">
+                <h3>Mobile Pop-up Hospital</h3>
+                <p class="muted">
+                  Adaptive interface for triage & resource allocation.
+                </p>
+                <p class="meta">PI · Task time ↓ 15% (lab)</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- News -->
+        <section id="news">
+          <h2>News</h2>
+          <ul class="news">
+            <li>
+              <time datetime="2025-11-01">2025‑11‑01</time> Gave a talk at the
+              Public Design Awards academic event.
+            </li>
+            <li>
+              <time datetime="2025-10-24">2025‑10‑24</time> Research Division
+              Awarded the Minister of Culture, Sports and Tourism Award at the
+              Public Design Awards.
+            </li>
+            <li>
+              <time datetime="2025-05-23">2025‑05‑23</time> KAIST–HS Hwasung MOU
+              meeting facilitation.
+            </li>
+          </ul>
+        </section>
+
+        <footer>
+          © <span id="year"></span> Kwangmin Cho ·
+          <a href="mailto:sky2021003@gmail.com">Contact</a>
+        </footer>
+      </main>
+    </div>
+
+    <script>
+      // year
+      document.getElementById("year").textContent = new Date().getFullYear();
+      // active nav on scroll (basic)
+      const links = document.querySelectorAll("nav.primary a");
+      const sections = [...links]
+        .map((a) => document.querySelector(a.getAttribute("href")))
+        .filter(Boolean);
+      const onScroll = () => {
+        let i = sections.length;
+        while (i--) {
+          const s = sections[i];
+          if (s.getBoundingClientRect().top < 120) {
+            links.forEach((l) => l.classList.remove("active"));
+            links[i].classList.add("active");
+            break;
+          }
+        }
+      };
+      document.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    </script>
+  </body>
+</html>

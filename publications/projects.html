@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Projects — Kwangmin Cho</title>
+    <meta
+      name="description"
+      content="Selected projects — healthcare systems, AI-supported design, interaction."
+    />
+    <link rel="icon" href="/assets/favicon.png" type="image/png" />
+
+    <style>
+      :root {
+        --bg: #fff;
+        --ink: #141519;
+        --ink2: #3c3f46;
+        --muted: #6b7280;
+        --line: #e5e7eb;
+        --brand: #6b4bff;
+        --chip: #f4f5f7;
+        --overlay: rgba(20, 21, 25, 0.78);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto,
+          "Noto Sans KR", sans-serif;
+      }
+      a {
+        color: var(--ink);
+        text-decoration: none;
+      }
+      a:hover {
+        color: var(--brand);
+      }
+      .wrap {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        min-height: 100vh;
+      }
+      @media (max-width: 960px) {
+        .wrap {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          position: sticky;
+          top: 0;
+        }
+      }
+      .sidebar {
+        border-right: 1px solid var(--line);
+        padding: 28px 20px;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+      }
+      .side-inner {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .brand {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+      }
+      .avatar {
+        width: 52px;
+        height: 52px;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+      }
+      .avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .name {
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 1.2;
+      }
+      .role {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      nav.primary {
+        margin: 26px 0;
+      }
+      nav.primary a {
+        display: block;
+        padding: 8px 10px;
+        border-radius: 10px;
+        color: var(--ink2);
+      }
+      nav.primary a.active,
+      nav.primary a:hover {
+        background: var(--chip);
+        color: var(--ink);
+      }
+      .contact {
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .contact a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--ink2);
+      }
+      main {
+        padding: 40px 5vw;
+      }
+      section {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 14px 0;
+      }
+      h1 {
+        font-size: 42px;
+        margin: 0 0 16px;
+      }
+      .tools {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin: 14px 0 22px;
+      }
+      .tools input {
+        flex: 1;
+        min-width: 240px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 10px 12px;
+      }
+      .tool-tags {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .chip {
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 13px;
+        cursor: pointer;
+      }
+      .chip.active {
+        background: var(--chip);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+      @media (max-width: 1024px) {
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 640px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .card {
+        position: relative;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        overflow: hidden;
+        background: #fff;
+        transition: transform 0.15s ease;
+      }
+      .card:hover {
+        transform: translateY(-2px);
+      }
+      .card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        display: block;
+      }
+      .overlay {
+        position: absolute;
+        inset: 0;
+        background: var(--overlay);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 14px;
+        opacity: 0;
+        transition: opacity 0.18s ease;
+      }
+      .card:hover .overlay,
+      .card:focus-within .overlay {
+        opacity: 1;
+      }
+      .overlay h3 {
+        margin: 0 0 6px;
+        font-size: 18px;
+        color: #fff;
+      }
+      .overlay p {
+        margin: 0 0 10px;
+        font-size: 13px;
+        opacity: 0.92;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .tag {
+        font-size: 12px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+      }
+      .meta {
+        font-size: 13px;
+        color: var(--muted);
+        padding: 10px 12px;
+      }
+      .load {
+        margin: 22px auto 0;
+        display: block;
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 10px;
+        padding: 10px 14px;
+        cursor: pointer;
+      }
+      footer {
+        border-top: 1px solid var(--line);
+        margin-top: 40px;
+        padding: 20px 0;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <aside class="sidebar">
+        <div class="side-inner">
+          <div class="brand">
+            <figure class="avatar">
+              <img src="/assets/Profile.png" alt="Portrait of Kwangmin Cho" />
+            </figure>
+            <div>
+              <div class="name">Kwangmin Cho</div>
+              <div class="role">Design Research · Industrial Design</div>
+            </div>
+          </div>
+          <nav class="primary">
+            <a href="/">Home</a>
+            <a href="/publications.html">Publications</a>
+            <a href="/projects.html" class="active">Projects</a>
+            <a href="/exhibitions.html">Exhibitions</a>
+            <a href="/#news">News</a>
+          </nav>
+          <div class="contact">
+            <a href="mailto:sky2021003@gmail.com">Email</a>
+            <a
+              href="https://www.linkedin.com/in/km-cho/"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+            <a
+              href="https://scholar.google.com/citations?user=OpjThPAAAAAJ&hl=ko"
+              target="_blank"
+              rel="noopener"
+              >Google Scholar</a
+            >
+            <a href="/Kwangmin_CV.pdf" target="_blank" rel="noopener"
+              >CV (PDF)</a
+            >
+          </div>
+        </div>
+      </aside>
+
+      <main>
+        <section>
+          <h1>Projects</h1>
+
+          <!-- 검색 + 태그 필터 -->
+          <div class="tools">
+            <input
+              id="search"
+              type="search"
+              placeholder="Search by title, keyword, or description…"
+            />
+            <div class="tool-tags" id="filter-tags">
+              <!-- 태그 버튼이 자동으로 채워짐 -->
+            </div>
+          </div>
+
+          <!-- 카드 그리드 -->
+          <div class="grid" id="grid"></div>
+          <button class="load" id="loadMore" aria-label="Load more projects">
+            Load more
+          </button>
+
+          <footer>© <span id="year"></span> Kwangmin Cho</footer>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      // ====== 데이터: 여기만 채우면 16개 자동 반영 ======
+      const PROJECTS = [
+        {
+          slug: "mcmtube",
+          title: "MCM TUBE",
+          desc: "Outer tent structure for hospital ward architecture",
+          tags: ["Healthcare", "Systems", "Architecture", "UX"],
+          thumb: "/assets/projects/mcmtube.jpg",
+        },
+        {
+          slug: "mcmshutter",
+          title: "MCM Shutter",
+          desc: "Wastewater treatment device for disaster response",
+          tags: ["Healthcare", "Systems", "Medical device", "UX"],
+          thumb: "/assets/projects/mcmshutter.jpg",
+        },
+        {
+          slug: "mcmtoilet",
+          title: "MCM Toilet System",
+          desc: "Toilet system for disaster response",
+          tags: ["Healthcare", "Systems", "Robot", "UX"],
+          thumb: "/assets/projects/mcmtoilet.jpg",
+        },
+        {
+          slug: "mcm",
+          title: "Mobile Clinic Module",
+          desc: "Rapid-deploy negative-pressure ward for disaster response",
+          tags: ["Healthcare", "Systems", "Medical device", "UX"],
+          thumb: "/assets/projects/mcm.jpg",
+        },
+        {
+          slug: "toque",
+          title: "TOQUE",
+          desc: "Interactive pass box for disaster response",
+          tags: ["Healthcare", "Systems", "Medical device", "UX"],
+          thumb: "/assets/projects/toque.jpg",
+        },
+        {
+          slug: "aquasis",
+          title: "Aquasis",
+          desc: "Seawater desalination water purifier",
+          tags: ["Social contribution", "Appropriate technology", "UX"],
+          thumb: "/assets/projects/aquasis.jpg",
+        },
+        {
+          slug: "imon",
+          title: "Imon",
+          desc: "IV pole for pediatric patients.",
+          tags: ["Healthcare", "Medical device", "UX"],
+          thumb: "/assets/projects/imon.jpg",
+        },
+        {
+          slug: "comoral",
+          title: "COMORAL",
+          desc: "Oral care medical device for the elderly in nursing hospitals",
+          tags: ["Healthcare", "Medical device", "UX"],
+          thumb: "/assets/projects/comoral.jpg",
+        },
+        {
+          slug: "dr",
+          title: "Dr.Pik",
+          desc: "Portable mouthpiece-type oral care product",
+          tags: ["Healthcare", "Medical device", "UX"],
+          thumb: "/assets/projects/dr.jpg",
+        },
+        {
+          slug: "zephyr",
+          title: "Zephyr",
+          desc: "Wound care device for the visually impaired",
+          tags: ["Healthcare", "Medical device", "UX", "Social contribution"],
+          thumb: "/assets/projects/zephyr.jpg",
+        },
+        {
+          slug: "easydryo",
+          title: "Easy Dry-O",
+          desc: "Compact dryer for single-person households",
+          tags: ["Home appliance", "Lifestyle", "UX"],
+          thumb: "/assets/projects/easydryo.jpg",
+        },
+        {
+          slug: "airking",
+          title: "Air King",
+          desc: "Interactive pass box for disaster response.",
+          tags: ["Home appliance", "Lifestyle", "Robot", "UX"],
+          thumb: "/assets/projects/airking.jpg",
+        },
+        {
+          slug: "aircube",
+          title: "Air cube",
+          desc: "A new concept in premium refrigerators",
+          tags: ["Home appliance", "Lifestyle", "UX"],
+          thumb: "/assets/projects/aircube.jpg",
+        },
+        {
+          slug: "ailagh250v",
+          title: "AIL AGH250V",
+          desc: "User-centric industrial hobbing machines",
+          tags: ["Industry", "Machine", "UX"],
+          thumb: "/assets/projects/ailagh250v.jpg",
+        },
+        {
+          slug: "nest",
+          title: "NEST",
+          desc: "Heated stool, a furniture-type home appliance.",
+          tags: ["Home appliance", "Lifestyle", "UX"],
+          thumb: "/assets/projects/nest.jpg",
+        },
+        {
+          slug: "hugme",
+          title: "Hug me",
+          desc: "Tree irrigation bag",
+          tags: ["Public", "Social contribution"],
+          thumb: "/assets/projects/hugme.jpg",
+        },
+        {
+          slug: "lock",
+          title: "Thumblock",
+          desc: "Fingerprint bike lock",
+          tags: ["Social problem", "UX"],
+          thumb: "/assets/projects/lock.jpg",
+        },
+        {
+          slug: "puncheart",
+          title: "Puncheart",
+          desc: "Punching machine that creates a donation system",
+          tags: ["Systems", "Social contribution"],
+          thumb: "/assets/projects/puncheart.jpg",
+        },
+      ];
+
+      // ====== 유틸 ======
+      const yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+      const grid = document.getElementById("grid");
+      const search = document.getElementById("search");
+      const loadMoreBtn = document.getElementById("loadMore");
+      const filterTags = document.getElementById("filter-tags");
+
+      let shown = 8; // 초기 8개만 노출 → Load more로 16개
+      let activeTag = null;
+
+      // 고유 태그 수집 → 필터 칩 생성
+      const ALL_TAGS = [...new Set(PROJECTS.flatMap((p) => p.tags || []))];
+      ALL_TAGS.forEach((t) => {
+        const b = document.createElement("button");
+        b.className = "chip";
+        b.textContent = t;
+        b.onclick = () => {
+          activeTag = activeTag === t ? null : t;
+          [...filterTags.children].forEach((x) =>
+            x.classList.toggle("active", x.textContent === activeTag)
+          );
+          render();
+        };
+        filterTags.appendChild(b);
+      });
+
+      function render() {
+        const term = (search.value || "").toLowerCase();
+        let list = PROJECTS.filter(
+          (p) =>
+            (!activeTag || (p.tags || []).includes(activeTag)) &&
+            (p.title.toLowerCase().includes(term) ||
+              p.desc.toLowerCase().includes(term) ||
+              (p.tags || []).join(" ").toLowerCase().includes(term))
+        );
+        grid.innerHTML = "";
+        list.slice(0, shown).forEach((p) => {
+          grid.insertAdjacentHTML(
+            "beforeend",
+            `
+          <article class="card">
+            <a href="projects/${p.slug}.html" aria-label="Open case study: ${
+              p.title
+            }">
+              <img src="${p.thumb}" alt="${p.title} thumbnail">
+              <div class="overlay">
+                <h3>${p.title}</h3>
+                <p>${p.desc}</p>
+                <div class="tags">${(p.tags || [])
+                  .map((t) => `<span class="tag">${t}</span>`)
+                  .join("")}</div>
+              </div>
+            </a>
+            <div class="meta">${p.meta || ""}</div>
+          </article>
+        `
+          );
+        });
+        loadMoreBtn.style.display = list.length > shown ? "block" : "none";
+      }
+
+      search?.addEventListener("input", () => {
+        shown = 8;
+        render();
+      });
+      loadMoreBtn?.addEventListener("click", () => {
+        shown += 8;
+        render();
+      });
+
+      render();
+    </script>
+  </body>
+</html>
