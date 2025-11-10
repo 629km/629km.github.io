@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Mobile pop-up hospital for Special disaster — Kwangmin Cho</title>
+    <meta
+      name="description"
+      content="Mobile pop-up hospital module for special disaster response."
+    />
+    <link rel="icon" href="../assets/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="../assets/page.css" />
+
+    <!-- Hero 비디오 전용 (3:2 비율로 통일) -->
+    <style>
+      .hero-video {
+        aspect-ratio: 3 / 2;
+        overflow: hidden;
+        border-radius: 14px;
+      }
+      .hero-video .hero-media {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .hero-video .hero-media {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="side-inner">
+          <div class="brand">
+            <figure class="avatar">
+              <img src="../assets/Profile.png" alt="" />
+            </figure>
+            <div>
+              <div class="name">Kwangmin Cho</div>
+              <div class="role">Design Research · Industrial Design</div>
+            </div>
+          </div>
+          <nav class="primary">
+            <a href="../index.html">Home</a>
+            <a href="../publications.html">Publications</a>
+            <a href="../projects.html">Projects</a>
+            <a href="../exhibitions.html" class="active">Exhibitions</a>
+            <a href="../index.html#news">News</a>
+          </nav>
+          <div class="contact">
+            <a href="mailto:sky2021003@gmail.com">Email</a>
+            <a
+              href="https://www.linkedin.com/in/km-cho/"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+            <a
+              href="https://scholar.google.com/citations?user=OpjThPAAAAAJ&hl=ko"
+              target="_blank"
+              rel="noopener"
+              >Google Scholar</a
+            >
+            <a href="../Kwangmin_CV.pdf" target="_blank" rel="noopener"
+              >CV (PDF)</a
+            >
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main -->
+      <main>
+        <section>
+          <h1>Mobile pop-up hospital for Special disaster</h1>
+          <p class="muted">
+            Mobile pop-up hospital module for special disaster response — rapid
+            deployment, safe flows, and field-ready UX.
+          </p>
+
+          <!-- HERO VIDEO (16:9 + 중앙 원형 재생 버튼) -->
+          <figure
+            class="hero hero-video"
+            style="
+              aspect-ratio: 16/9;
+              border-radius: 14px;
+              overflow: hidden;
+              position: relative;
+            "
+          >
+            <video
+              id="heroVideo"
+              class="hero-media"
+              playsinline
+              preload="metadata"
+              poster="../assets/exhibitions/pop-hero.jpg"
+              aria-label="Mobile pop-up hospital hero video"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+              "
+            >
+              <!-- 기본 480p (네트워크가 느릴 수 있으니 기본 세팅) -->
+              <source
+                src="../assets/exhibitions/pop-hero-480.webm"
+                type="video/webm"
+              />
+              <source
+                src="../assets/exhibitions/pop-hero-480.mp4"
+                type="video/mp4"
+              />
+            </video>
+
+            <!-- 중앙 원형 재생 버튼 -->
+            <button
+              id="playHero"
+              aria-label="Play video"
+              style="
+                position: absolute;
+                inset: 0;
+                margin: auto;
+                width: 78px;
+                height: 78px;
+                border: none;
+                border-radius: 50%;
+                cursor: pointer;
+                background: rgba(20, 21, 25, 0.72);
+                backdrop-filter: blur(3px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: background 0.25s ease;
+              "
+            >
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="#ffffff">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </button>
+          </figure>
+
+          <script>
+            (function () {
+              const video = document.getElementById("heroVideo");
+              const btn = document.getElementById("playHero");
+
+              // 🟣 reduced motion 사용자면 비디오 자동재생 방지
+              const prefersReducedMotion = window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+              ).matches;
+
+              // 🟣 네트워크 속도가 빠르면 고해상도 영상으로 교체 (가까운 순서로)
+              const net =
+                (navigator.connection && navigator.connection.effectiveType) ||
+                "4g";
+              const canUse720 =
+                !prefersReducedMotion &&
+                (net === "4g" || net === "wifi" || net === "ethernet");
+
+              if (canUse720) {
+                video.innerHTML = `
+        <source src="../assets/exhibitions/pop-hero-720.webm" type="video/webm">
+        <source src="../assets/exhibitions/pop-hero-720.mp4" type="video/mp4">
+      `;
+                video.load();
+              }
+
+              // 🟣 Play 버튼 클릭 시 → 영상 재생 + mute 유지
+              btn.addEventListener(
+                "click",
+                async () => {
+                  video.muted = true;
+                  video.setAttribute("controls", ""); // 사용자 컨트롤 허용
+                  try {
+                    await video.play();
+                  } catch {}
+                  btn.style.display = "none";
+                },
+                { once: true }
+              );
+            })();
+          </script>
+
+          <div class="two-col">
+            <div>
+              <h3>Overview</h3>
+              <p>
+                Special Disaster Response Mobile Hospital is an inclusive design
+                case developed to ensure that no one is excluded from receiving
+                medical care, even during disasters. This mobile hospital
+                responds to various special disasters, such as war, natural
+                disasters, and infectious diseases, while guaranteeing safe and
+                equal access to healthcare for all, including the elderly,
+                persons with disabilities, and isolated individuals. Its modular
+                structure allows flexible expansion and rapid deployment,
+                enabling effective medical support even in urban outskirts or
+                areas with limited infrastructure. Equipped for isolation and
+                emergency care, it also considers physical and psychological
+                safety in infectious disease situations. Rather than a simple
+                structure, it functions as adaptive infrastructure that can
+                respond swiftly to changing conditions. It is designed to be
+                accessible regardless of gender, age, physical condition, or
+                illness, reflecting an empathy-based design philosophy that
+                minimizes both physical and psychological barriers. Ultimately,
+                this project embodies medical equity and dignified recovery,
+                offering a new standard for public architecture that realizes
+                the values of inclusion and solidarity beyond safety.
+              </p>
+
+              <div class="actions">
+                <!-- 필요 시 외부 버튼 활성화
+            <a class="btn" href="#" target="_blank">Press</a>
+            <a class="btn" href="#" target="_blank">Catalog (PDF)</a>
+            -->
+              </div>
+            </div>
+            <div>
+              <h3>Details</h3>
+              <div class="dl">
+                <div>Venue</div>
+                <div>Gwangju Design Biennale 2025</div>
+                <div>City</div>
+                <div>Gwangju, South Korea</div>
+                <div>Dates</div>
+                <div>Aug–Nov, 2025</div>
+                <div>Role</div>
+                <div>Exhibitor</div>
+                <div>Works</div>
+                <div>Total</div>
+              </div>
+            </div>
+          </div>
+
+          <h3>Gallery</h3>
+          <div class="gallery">
+            <img
+              src="../assets/exhibitions/pop-1.jpg"
+              alt="Rapid frame setup"
+            />
+            <img
+              src="../assets/exhibitions/pop-2.jpg"
+              alt="Weather buffer and tent interface"
+            />
+            <img
+              src="../assets/exhibitions/pop-3.jpg"
+              alt="Negative pressure airflow diagram"
+            />
+            <img
+              src="../assets/exhibitions/pop-4.jpg"
+              alt="Clean/dirty path separation"
+            />
+            <img
+              src="../assets/exhibitions/pop-5.jpg"
+              alt="On-site mock deployment"
+            />
+            <img
+              src="../assets/exhibitions/pop-6.jpg"
+              alt="Night visibility and wayfinding"
+            />
+          </div>
+
+          <a class="back" href="../exhibitions.html">← Back to Exhibitions</a>
+          <footer>© <span id="year"></span> Kwangmin Cho</footer>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
