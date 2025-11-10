@@ -329,34 +329,6 @@
 </main>
 </div>
 
-<!-- ✅ 여기! JS 넣는 자리 -->
-<script>
-    (function () {
-      const toggle = document.getElementById('navToggle');
-      const backdrop = document.getElementById('navBackdrop');
-      const body = document.body;
-      const sidebar = document.querySelector('.sidebar');
-  
-      function closeNav() { body.classList.remove('nav-open'); }
-  
-      toggle?.addEventListener('click', () => {
-        body.classList.toggle('nav-open');
-      });
-      backdrop?.addEventListener('click', closeNav);
-  
-      // 사이드바 내부 링크 클릭 → 다음 페이지 로드 전에 닫기 (겹침 방지)
-      sidebar?.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', closeNav, { passive: true });
-      });
-  
-      // 데스크톱으로 전환 시 상태 초기화
-      window.addEventListener('resize', () => {
-        if (window.innerWidth > 960) closeNav();
-      });
-    })();
-  </script>
-  
-
 </body>
 </html>
 
