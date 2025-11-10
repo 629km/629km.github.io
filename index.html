@@ -249,30 +249,22 @@
         color: var(--muted);
       }
     </style>
+    <link rel="stylesheet" href="/assets/page.css" />
   </head>
   <body>
- <!-- Mobile top bar -->
-<div class="mobile-topbar" aria-hidden="true">
-  <button id="navToggle" class="menu-btn" aria-label="Open menu">
-    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M3 6h18M3 12h18M3 18h18" stroke="#333" stroke-width="2" stroke-linecap="round"/>
-    </svg>
-  </button>
-  <strong>Kwangmin Cho</strong>
-</div>
-
-<div class="wrap">
-  <!-- 기존 aside.sidebar + main ... -->
-</div>
-
-<!-- Backdrop -->
-<div class="backdrop" id="navBackdrop"></div>
-
-
-    <!-- Mobile top bar -->
-    <div class="top">
+    <!-- Mobile top bar (모바일에서만 보임, CSS가 제어) -->
+    <div class="mobile-topbar" aria-hidden="true">
+      <button id="navToggle" class="menu-btn" aria-label="Open menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M3 6h18M3 12h18M3 18h18"
+            stroke="#333"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </svg>
+      </button>
       <strong>Kwangmin Cho</strong>
-      <a href="#menu">Menu</a>
     </div>
 
     <div class="wrap">
@@ -298,38 +290,20 @@
           </nav>
 
           <div class="contact" aria-label="Contacts">
-            <a href="mailto:sky2021003@gmail.com"
-              ><svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11A2.5 2.5 0 0 1 19.5 20h-15A2.5 2.5 0 0 1 2 17.5v-11Zm2.2-.5 7.8 5.3L19.8 6H4.2Zm15.3 2.2-6.9 4.7a1.5 1.5 0 0 1-1.6 0L4.1 8.2V17.5c0 .28.22.5.5.5h15c.28 0 .5-.22.5-.5V8.2Z"
-                /></svg
-              >sky2021003@gmail.com</a
-            >
+            <a href="mailto:sky2021003@gmail.com">Email</a>
             <a
               href="https://www.linkedin.com/in/km-cho/"
               target="_blank"
-              rel="noopener noreferrer"
-              ><svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M4.98 3.5a2.5 2.5 0 1 1 .02 5 2.5 2.5 0 0 1-.02-5ZM3 8.75h4v11.5H3V8.75Zm6.5 0H13v1.74h.05c.49-.93 1.68-1.9 3.46-1.9 3.7 0 4.39 2.3 4.39 5.3v6.36h-4V14.9c0-1.2-.02-2.74-1.67-2.74-1.67 0-1.93 1.3-1.93 2.66v5.43h-4V8.75Z"
-                /></svg
+              rel="noopener"
               >LinkedIn</a
             >
             <a
               href="https://scholar.google.com/citations?user=OpjThPAAAAAJ&hl=ko"
               target="_blank"
-              rel="noopener noreferrer"
-              ><svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M12 3 1.5 8.5 12 14l6.5-3.5v5.25a3.75 3.75 0 0 1-3 3.67v1.08c1.7.2 3.5.2 5.25 0v-1.08a3.75 3.75 0 0 1-3-3.67V9.9L22.5 8.5 12 3Z"
-                /></svg
+              rel="noopener"
               >Google Scholar</a
             >
-            <a href="/Kwangmin_CV.pdf"
-              ><svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M7 2h7l5 5v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm7 1.5V8h4.5L14 3.5ZM8.5 11h7v1.5h-7V11Zm0 3h7v1.5h-7V14Zm0 3h7V18H8.5Z"
-                /></svg
+            <a href="/Kwangmin_CV.pdf" target="_blank" rel="noopener"
               >CV (PDF)</a
             >
           </div>
@@ -342,15 +316,11 @@
         <section id="home">
           <h1>Hello, I’m Kwangmin.</h1>
           <p class="muted">
-            I am an Research Assistant Professor of the deparment of Industrial
-            Design at the KAIST(Kaorea Advanced Institute of Science and
-            Technologh.
-            <br />I received Ph.D. in Creative Design Engineering from the Ulsan
-            National Institute of Science and Technology (UNIST). <br />My M.S.
-            and B.S. is Industrial Design at the same university. Ph.D.
-            Strategic design researcher exploring how
-            <strong>AI‑supported</strong> and
-            <strong>data‑enabled</strong> approaches can transform healthcare
+            I am an Research Assistant Professor of the department of Industrial
+            Design at KAIST. I received my Ph.D. in Creative Design Engineering
+            from UNIST. I explore how
+            <strong>AI-supported</strong> and
+            <strong>data-enabled</strong> approaches can transform healthcare
             systems & services.
           </p>
           <div class="chips">
@@ -363,7 +333,7 @@
           </div>
         </section>
 
-        <!-- Projects -->
+        <!-- Projects (요약 카드 3개) -->
         <section id="projects">
           <div class="projects-head">
             <h2>Selected Projects</h2>
@@ -420,17 +390,16 @@
           <h2>News</h2>
           <ul class="news">
             <li>
-              <time datetime="2025-11-01">2025‑11‑01</time> Gave a talk at the
-              Public Design Awards academic event.
+              <time datetime="2025-11-01">2025-11-01</time> Public Design Awards
+              academic talk.
             </li>
             <li>
-              <time datetime="2025-10-24">2025‑10‑24</time> Research Division
-              Awarded the Minister of Culture, Sports and Tourism Award at the
-              Public Design Awards.
+              <time datetime="2025-10-24">2025-10-24</time> Research Division —
+              Minister Award at Public Design Awards.
             </li>
             <li>
-              <time datetime="2025-05-23">2025‑05‑23</time> KAIST–HS Hwasung MOU
-              meeting facilitation.
+              <time datetime="2025-05-23">2025-05-23</time> KAIST–HS Hwasung MOU
+              facilitation.
             </li>
           </ul>
         </section>
@@ -442,64 +411,41 @@
       </main>
     </div>
 
+    <!-- Off-canvas backdrop -->
+    <div class="backdrop" id="navBackdrop"></div>
+
+    <!-- JS: year + mobile nav -->
     <script>
       // year
       document.getElementById("year").textContent = new Date().getFullYear();
-      // active nav on scroll (basic)
-      const links = document.querySelectorAll("nav.primary a");
-      const sections = [...links]
-        .map((a) => document.querySelector(a.getAttribute("href")))
-        .filter(Boolean);
-      const onScroll = () => {
-        let i = sections.length;
-        while (i--) {
-          const s = sections[i];
-          if (s.getBoundingClientRect().top < 120) {
-            links.forEach((l) => l.classList.remove("active"));
-            links[i].classList.add("active");
-            break;
-          }
+
+      // mobile off-canvas
+      (function () {
+        const toggle = document.getElementById("navToggle");
+        const backdrop = document.getElementById("navBackdrop");
+        const body = document.body;
+        const sidebar = document.querySelector(".sidebar");
+
+        function closeNav() {
+          body.classList.remove("nav-open");
         }
-      };
-      document.addEventListener("scroll", onScroll, { passive: true });
-      onScroll();
+
+        toggle?.addEventListener("click", () => {
+          body.classList.toggle("nav-open");
+        });
+
+        backdrop?.addEventListener("click", closeNav);
+
+        // 사이드바 링크 클릭 시 닫기
+        sidebar?.querySelectorAll("a").forEach((a) => {
+          a.addEventListener("click", closeNav, { passive: true });
+        });
+
+        // 데스크톱 전환 시 초기화
+        window.addEventListener("resize", () => {
+          if (window.innerWidth > 960) closeNav();
+        });
+      })();
     </script>
-    ...
-    <footer>© <span id="year"></span> Kwangmin Cho</footer>
-  </section>
-  </main>
-  </div>
-  
-  <!-- ✅ 여기! JS 넣는 자리 -->
-  <script>
-    (function () {
-      const toggle = document.getElementById('navToggle');
-      const backdrop = document.getElementById('navBackdrop');
-      const body = document.body;
-      const sidebar = document.querySelector('.sidebar');
-  
-      function closeNav() { body.classList.remove('nav-open'); }
-  
-      toggle?.addEventListener('click', () => {
-        body.classList.toggle('nav-open');
-      });
-      backdrop?.addEventListener('click', closeNav);
-  
-      // 사이드바 내부 링크 클릭 → 다음 페이지 로드 전에 닫기 (겹침 방지)
-      sidebar?.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', closeNav, { passive: true });
-      });
-  
-      // 데스크톱으로 전환 시 상태 초기화
-      window.addEventListener('resize', () => {
-        if (window.innerWidth > 960) closeNav();
-      });
-    })();
-  </script>
-  
-  
-  </body>
-  </html>
-  
   </body>
 </html>
