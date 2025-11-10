@@ -119,27 +119,23 @@
       }
     </style>
   </head>
-  <body>
-    <!-- Mobile top bar (모바일에서만 보임) -->
-    <div class="mobile-topbar" aria-hidden="true">
-      <button id="navToggle" class="menu-btn" aria-label="Open menu">
-        <!-- 햄버거 아이콘 -->
-        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-          <path
-            d="M3 6h18M3 12h18M3 18h18"
-            stroke="#333"
-            stroke-width="2"
-            stroke-linecap="round"
-          />
-        </svg>
-      </button>
-      <strong>Kwangmin Cho</strong>
-    </div>
-
-    <!-- …기존 .wrap 시작… -->
-
-    <!-- 오프캔버스 배경 -->
-    <div class="backdrop" id="navBackdrop"></div>
+ <!-- Mobile top bar -->
+<div class="mobile-topbar" aria-hidden="true">
+    <button id="navToggle" class="menu-btn" aria-label="Open menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke="#333" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <strong>Kwangmin Cho</strong>
+  </div>
+  
+  <div class="wrap">
+    <!-- 기존 aside.sidebar + main ... -->
+  </div>
+  
+  <!-- Backdrop -->
+  <div class="backdrop" id="navBackdrop"></div>
+  
 
     <div class="wrap">
       <!-- Sidebar (같은 패턴) -->
@@ -455,29 +451,31 @@
     
     <!-- ✅ 여기! JS 넣는 자리 -->
     <script>
-      (function () {
-        const toggle = document.getElementById('navToggle');
-        const backdrop = document.getElementById('navBackdrop');
-        const body = document.body;
-        const sidebar = document.querySelector('.sidebar');
-    
-        function openNav() { body.classList.add('nav-open'); }
-        function closeNav() { body.classList.remove('nav-open'); }
-    
-        toggle?.addEventListener('click', () => {
-          body.classList.toggle('nav-open');
-        });
-        backdrop?.addEventListener('click', closeNav);
-    
-        sidebar?.querySelectorAll('a').forEach(a => {
-          a.addEventListener('click', closeNav);
-        });
-    
-        window.addEventListener('resize', () => {
-          if (window.innerWidth > 960) closeNav();
-        });
-      })();
-    </script>
+        (function () {
+          const toggle = document.getElementById('navToggle');
+          const backdrop = document.getElementById('navBackdrop');
+          const body = document.body;
+          const sidebar = document.querySelector('.sidebar');
+      
+          function closeNav() { body.classList.remove('nav-open'); }
+      
+          toggle?.addEventListener('click', () => {
+            body.classList.toggle('nav-open');
+          });
+          backdrop?.addEventListener('click', closeNav);
+      
+          // 사이드바 내부 링크 클릭 → 다음 페이지 로드 전에 닫기 (겹침 방지)
+          sidebar?.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', closeNav, { passive: true });
+          });
+      
+          // 데스크톱으로 전환 시 상태 초기화
+          window.addEventListener('resize', () => {
+            if (window.innerWidth > 960) closeNav();
+          });
+        })();
+      </script>
+      
     
     </body>
     </html>
